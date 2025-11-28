@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Anggota BTQ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f3f3;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 5px;
+            border: 1px solid #999;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #007BFF;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056c7;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 5px;
+            background: #e4ffe4;
+            border: 1px solid #4caf50;
+        }
+        .notfound {
+            background: #ffe4e4;
+            border: 1px solid #ff5c5c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 style="text-align:center;">Cek Anggota BTQ</h2>
+
+        <input id="searchInput" placeholder="Masukkan nama peserta...">
+
+        <button onclick="checkName()">Cek Sekarang</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Data anggota BTQ
+        const anggota = [
+            "Luthfiyah", "Yoda", "Selvy", "Nuraini", "Via", "Early",
+            "Juli", "Clarissa", "Putri", "Savira", "Syifa",
+            "Nabila", "Alinta", "Akbar", "Novan", "Nada", "Alandyas"
+        ];
+
+        function checkName() {
+            const input = document.getElementById("searchInput").value.trim().toLowerCase();
+            const resultDiv = document.getElementById("result");
+
+            if (input === "") {
+                resultDiv.innerHTML = `<div class="notfound result">Silakan masukkan nama.</div>`;
+                return;
+            }
+
+            const found = anggota.find(name => name.toLowerCase() === input);
+
+            if (found) {
+                resultDiv.innerHTML = `
+                    <div class="result">
+                        <strong>${found}</strong> terdaftar sebagai anggota BTQ.
+                    </div>`;
+            } else {
+                resultDiv.innerHTML = `
+                    <div class="result notfound">
+                        Nama tidak ditemukan dalam daftar anggota BTQ.
+                    </div>`;
+            }
+        }
+    </script>
+
+</body>
+</html>
